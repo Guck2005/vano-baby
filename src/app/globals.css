@@ -1687,7 +1687,7 @@ nav {
   .nav-cta { display: none; }
   .nav-burger { display: flex; }
   .hero {
-    min-height: 85dvh;
+    min-height: 80dvh;
   }
   .hero-side-panel { display: none; }
   .hero-card { display: none; }
