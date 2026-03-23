@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls c:/Users/Ursule/Documents/Realisation/vanobaby/public/img/logo*)"
+    ]
+  }
+}

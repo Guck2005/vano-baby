@@ -1,6 +1,71 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { height: 100%; background: #0f0f0f; overflow-x: hidden; font-family: var(--font-syne), sans-serif; }
 
+/* ── LOADER ── */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.logo-container {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  animation: loaderZoom 2s infinite alternate, loaderBlink 2s infinite;
+}
+
+.loader {
+  --d: 44px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  color: #ee0000;
+  box-shadow:
+    calc(1 * var(--d))     calc(0 * var(--d))     0 0.5px,
+    calc(0.866 * var(--d)) calc(0.5 * var(--d))   0 0.5px,
+    calc(0.5 * var(--d))   calc(0.866 * var(--d)) 0 0.5px,
+    calc(0 * var(--d))     calc(1 * var(--d))     0 1px,
+    calc(-0.5 * var(--d))  calc(0.866 * var(--d)) 0 1px,
+    calc(-0.866 * var(--d))calc(0.5 * var(--d))   0 1px,
+    calc(-1 * var(--d))    calc(0 * var(--d))     0 1.5px,
+    calc(-0.866 * var(--d))calc(-0.5 * var(--d))  0 1.5px,
+    calc(-0.5 * var(--d))  calc(-0.866 * var(--d))0 1.5px,
+    calc(0 * var(--d))     calc(-1 * var(--d))    0 1px,
+    calc(0.5 * var(--d))   calc(-0.866 * var(--d))0 1px,
+    calc(0.866 * var(--d)) calc(-0.5 * var(--d))  0 1px;
+  animation: loaderSpin 1.5s infinite linear;
+}
+
+@keyframes loaderZoom {
+  0%   { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes loaderBlink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75%      { opacity: 0.5; }
+}
+
+@keyframes loaderSpin {
+  100% { transform: translate(-50%, -50%) rotate(1turn); }
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-bebas-neue), sans-serif;
   letter-spacing: .04em;
@@ -434,7 +499,8 @@ p {
   align-items: center;
   gap: 10px;
   transition: background .2s, transform .2s;
-  border: none; cursor: pointer;
+  border: none;
+  cursor: pointer;
 }
 .btn-main:hover { background: #f5f0eb; color: #0f0f0f; transform: translateY(-2px); }
 .btn-sec {
@@ -928,6 +994,12 @@ nav {
   max-width: 620px;
   margin-top: 16px;
   color: rgba(245, 240, 235, 0.58);
+}
+
+.histoire-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 72px;
 }
 
 .story-shell {
