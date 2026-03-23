@@ -40,6 +40,13 @@ export default function Acces() {
                 <span>Mobile Money accepté (Wave / MTN MoMo)</span>
               </li>
             </ul>
+
+            <a href="#billetterie" className="btn-main" style={{ marginTop: '0', alignSelf: 'flex-start' }}>
+              Prendre mon ticket
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <path d="M3 7.5H12M8.5 4L12 7.5L8.5 11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
           </div>
 
           {/* Colonne droite — image artiste */}

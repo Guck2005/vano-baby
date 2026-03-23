@@ -1678,12 +1678,16 @@ nav {
 /* ── Mobile (≤ 768px) ── */
 @media (max-width: 768px) {
   .hero-bg { opacity: 1; }
+  .hero-bg img {
+    object-fit: contain;
+    object-position: center top;
+  }
   nav { padding: 14px 20px; }
   .nav-links { display: none; }
   .nav-cta { display: none; }
   .nav-burger { display: flex; }
   .hero {
-    min-height: 100dvh;
+    min-height: 85dvh;
   }
   .hero-side-panel { display: none; }
   .hero-card { display: none; }
@@ -1704,9 +1708,9 @@ nav {
 
   /* Titre : empile les deux groupes */
   .hero-title {
-    
+
     align-items: center;
-    
+
     font-size: clamp(52px, 19vw, 86px);
   }
   .title-word {
