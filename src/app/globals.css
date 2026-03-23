@@ -2308,6 +2308,9 @@ nav {
 
 /* Tablette */
 @media (max-width: 900px) {
+  .billet-card.is-active {
+    clip-path: none;
+  }
   .billet-section {
     padding: 72px 20px 80px;
   }
