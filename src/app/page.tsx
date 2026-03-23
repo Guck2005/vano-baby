@@ -4,6 +4,7 @@ import HypeStrip from '@/components/HypeStrip';
 import Guests from '@/components/Guests';
 import History from '@/components/History';
 import Acces from '@/components/Acces';
+import Billetterie from '@/components/Billetterie';
 import FAQ from '@/components/FAQ';
 import OwlChatbot from '@/components/OwlChatbot';
 
@@ -18,6 +19,7 @@ export default function Home() {
         <History />
         <Acces />
       </div>
+      <Billetterie />
       <FAQ />
       <OwlChatbot />
     </main>
