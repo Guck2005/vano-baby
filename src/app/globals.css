@@ -1586,7 +1586,7 @@ nav {
     left: 0;
     right: 0;
     bottom: 72px;
-    margin-bottom: 100px;
+    /* margin-bottom: 100px; */
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -1601,7 +1601,7 @@ nav {
   }
   .hero-visual img {
     object-fit: contain;
-    object-position: center center;
+    /* object-position: center center; */
     height: 100%;
   }
   .hype-strip-section {
