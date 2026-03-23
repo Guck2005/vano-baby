@@ -87,6 +87,8 @@ export default function Billetterie() {
               const isActive = selected === t.id;
               const gaugeRatio = t.remaining / t.total;
               const gaugeColor = gaugeRatio > 0.5 ? t.color : gaugeRatio > 0.2 ? '#e08c00' : '#ee0000';
+              const cardQty = qty[t.id];
+              const cardTotal = t.price * cardQty;
 
               return (
                 <div
@@ -118,6 +120,14 @@ export default function Billetterie() {
                           {p}
                         </div>
                       ))}
+                    </div>
+
+                    {/* CTA mobile — visible uniquement sur mobile */}
+                    <div className="billet-card-footer" onClick={(e) => e.stopPropagation()}>
+                      <div className="billet-card-footer-divider" />
+                      <a href="#" className="billet-card-cta">
+                        Réserver {cardQty} place{cardQty > 1 ? 's' : ''} · {fmt(cardTotal)} FCFA
+                      </a>
                     </div>
                   </div>
 
