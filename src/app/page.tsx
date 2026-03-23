@@ -14,8 +14,10 @@ export default function Home() {
       <Hero />
       <HypeStrip />
       <Guests />
-      <History />
-      <Acces />
+      <div className="history-acces-bg">
+        <History />
+        <Acces />
+      </div>
       <FAQ />
       <OwlChatbot />
     </main>

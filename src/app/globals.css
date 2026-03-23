@@ -1004,12 +1004,29 @@ nav {
   color: rgba(255, 248, 243, 0.88);
 }
 
+.history-acces-bg {
+  position: relative;
+}
+
+.history-acces-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/img/background_global.png') center / cover no-repeat;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.history-acces-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
 .histoire-section {
   position: relative;
   overflow: hidden;
   padding: 92px 20px 120px;
-  background:
-    radial-gradient(circle at 12% 12%, #ee00002e, #0f0f0f, #0f0f0f 24%), radial-gradient(circle at 85% 28%, #f5f0eb14, #0000 22%), linear-gradient(#120909 0%, #0f0f0f 100%);
+  background: transparent;
 }
 
 .histoire-header {
