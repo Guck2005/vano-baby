@@ -1986,7 +1986,10 @@ nav {
   }
   .story-board-mobile {
     display: block;
-    padding: 10px 34px 18px;
+    padding: 0 6px;
+  }
+  .story-board-mobile .carousel-viewport {
+    padding-top: 18px;
   }
   .story-board-mobile .carousel-content {
     margin-left: 0;
@@ -1995,16 +1998,30 @@ nav {
   .story-board-mobile-item {
     width: 100%;
     padding-left: 0;
+    padding-top: 2px;
   }
   .story-board-mobile .carousel-btn {
+    display: flex;
     top: 44%;
     color: #f6f0ea;
+    background: #ee0000;
+    border: 1px solid rgba(246, 240, 234, 0.32);
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0.95;
+  }
+  .story-board-mobile .carousel-btn svg {
+    width: 28px;
+    height: 28px;
   }
   .story-board-mobile-nav--prev {
-    left: 0;
+    left: -4px;
   }
   .story-board-mobile-nav--next {
-    right: 0;
+    right: -4px;
   }
   .story-note {
     position: relative;
@@ -2034,6 +2051,7 @@ nav {
     flex: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
   .story-carousel {
     flex: 1;
@@ -2055,10 +2073,29 @@ nav {
   .story-note p {
     font-size: .84rem;
   }
-  /* .story-carousel-nav,
-  .story-carousel-dots {
+  .story-carousel-nav {
     display: none;
-  } */
+  }
+  .story-carousel-dots {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    z-index: 3;
+    margin-top: 0;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(15, 15, 15, 0.35);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+  .story-carousel-dot {
+    background: rgba(255, 255, 255, 0.62);
+  }
+  .story-carousel-dot.is-active {
+    background: #ffffff;
+  }
   .section-label::before,
   .faq-kicker::before {
     width: 24px;
