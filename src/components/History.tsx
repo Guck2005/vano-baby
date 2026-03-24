@@ -4,16 +4,17 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 const steps = [
-  { year: '2016', title: 'Le gang prend vie', text: 'Les premieres apparitions installent une voix, une attitude et une energie qui commencent deja a marquer la scene.', images: ['/img/background_histoire.png', '/img/hero_image.png', '/img/background_hero.png'], cssClass: 'note-1', accent: 'accent-red' },
-  { year: '2017', title: 'Premieres scenes', text: 'Le public decouvre une presence forte sur scene, avec un style direct et des performances qui accrochent.', images: ['/img/guest/fanicko.jpg', '/img/background_histoire.png', '/img/acces_vano.png'], cssClass: 'note-2', accent: 'accent-ember' },
-  { year: '2018', title: 'Les titres s imposent', text: 'Les morceaux circulent, la base de fans grossit et l identite artistique commence a devenir incontournable.', images: ['/img/hero_image.png', '/img/background_hero.png', '/img/background_histoire.png'], cssClass: 'note-3', accent: 'accent-bone' },
-  { year: '2019', title: 'Le rayonnement s elargit', text: 'Les collaborations, les passages remarques et la notoriete installent Vano Baby dans une autre dimension.', images: ['/img/acces_vano.png', '/img/guest/fanicko.jpg', '/img/background_hero.png'], cssClass: 'note-4', accent: 'accent-red' },
-  { year: '2020', title: 'L identite s affirme', text: 'Le style, l attitude et le ton deviennent plus reconnaissables, avec une image qui marque davantage les esprits.', images: ['/img/background_hero.png', '/img/acces_vano.png', '/img/hero_image.png'], cssClass: 'note-5', accent: 'accent-ember' },
-  { year: '2021', title: 'Un nouveau souffle', text: 'Le son evolue, les visuels se renforcent et chaque sortie affirme un univers plus ambitieux et plus mature.', images: ['/img/background_histoire.png', '/img/guest/fanicko.jpg', '/img/background_hero.png'], cssClass: 'note-6', accent: 'accent-bone' },
-  { year: '2022', title: 'La reconnaissance', text: 'Le parcours prend une autre ampleur et les moments forts s enchainent avec une vraie reconnaissance populaire.', images: ['/img/hero_image.png', '/img/background_histoire.png', '/img/acces_vano.png'], cssClass: 'note-7', accent: 'accent-red' },
-  { year: '2023', title: 'La scene grandit', text: 'Les performances deviennent plus fortes, plus attendues et plus memorables a chaque passage.', images: ['/img/guest/fanicko.jpg', '/img/hero_image.png', '/img/background_hero.png'], cssClass: 'note-8', accent: 'accent-ember' },
-  { year: '2025', title: 'L annee decisive', text: 'Tout converge vers une celebration a grande echelle, pensee comme un moment fort pour les fans et le parcours.', images: ['/img/acces_vano.png', '/img/background_histoire.png', '/img/guest/fanicko.jpg'], cssClass: 'note-9', accent: 'accent-bone' },
-  { year: '2026', title: 'Le grand soir', text: 'Le 04 avril 2026 devient le point culminant de cette decennie: un concert manifeste pour celebrer 10 ans du gang.', images: ['/img/hero_image.png', '/img/acces_vano.png', '/img/background_histoire.png'], cssClass: 'note-10 is-current', accent: 'accent-gold' }
+  { year: '2016', title: 'Le gang prend vie', text: 'Les premieres apparitions installent une voix, une attitude et une energie qui commencent deja a marquer la scene.', images: ['/img/history/2016.jpg', '/img/history/2016_1_1.jpg', '/img/history/2016_1_2.jpg', '/img/history/2016_2.jpg', '/img/history/2016_3.jpg', '/img/history/2016_4.jpg', '/img/history/2016_5.jpg'], cssClass: 'note-1', accent: 'accent-red' },
+  { year: '2017', title: 'Premieres scenes', text: 'Le public decouvre une presence forte sur scene, avec un style direct et des performances qui accrochent.', images: ['/img/history/2017_1.jpg', '/img/history/2017_2.jpg', '/img/history/2017_tonsimin.jpg', '/img/history/2017_jesenfou.jpg'], cssClass: 'note-2', accent: 'accent-ember' },
+  { year: '2018', title: 'Les titres s imposent', text: 'Les morceaux circulent, la base de fans grossit et l identite artistique commence a devenir incontournable.', images: ['/img/history/2018_1.jpg', '/img/history/2018_2.jpg', '/img/history/2018_3.jpg'], cssClass: 'note-3', accent: 'accent-bone' },
+  { year: '2019', title: 'Le rayonnement s elargit', text: 'Les collaborations, les passages remarques et la notoriete installent Vano Baby dans une autre dimension.', images: ['/img/history/2019_1.jpg', '/img/history/2019_2.jpg'], cssClass: 'note-4', accent: 'accent-red' },
+  { year: '2020', title: 'L identite s affirme', text: 'Le style, l attitude et le ton deviennent plus reconnaissables, avec une image qui marque davantage les esprits.', images: ['/img/history/2020.jpg', '/img/history/2020_1.jpg', '/img/history/2020_2.jpg', '/img/history/2020_3.jpg'], cssClass: 'note-5', accent: 'accent-ember' },
+  { year: '2021', title: 'Un nouveau souffle', text: 'Le son evolue, les visuels se renforcent et chaque sortie affirme un univers plus ambitieux et plus mature.', images: ['/img/history/2021_1.jpg', '/img/history/2021_2.jpg'], cssClass: 'note-6', accent: 'accent-bone' },
+  { year: '2022', title: 'La reconnaissance', text: 'Le parcours prend une autre ampleur et les moments forts s enchainent avec une vraie reconnaissance populaire.', images: ['/img/history/2022_1.jpg', '/img/history/2022_2.jpg'], cssClass: 'note-7', accent: 'accent-red' },
+  { year: '2023', title: 'La scene grandit', text: 'Les performances deviennent plus fortes, plus attendues et plus memorables a chaque passage.', images: ['/img/history/2023_1.jpg', '/img/history/2023_2.jpg', '/img/history/2023_3.jpg'], cssClass: 'note-8', accent: 'accent-ember' },
+  { year: '2024', title: 'L elan se confirme', text: 'Les sorties et les lives de 2024 posent les bases d une annee anniversaire qui s annonce historique.', images: ['/img/history/2024_1.jpg', '/img/history/2024_2.jpg', '/img/history/2024_3.jpg'], cssClass: 'note-9', accent: 'accent-bone' },
+  { year: '2025', title: 'L annee decisive', text: 'Tout converge vers une celebration a grande echelle, pensee comme un moment fort pour les fans et le parcours.', images: ['/img/history/2025_1.jpeg', '/img/history/2025_2.jpg'], cssClass: 'note-10', accent: 'accent-red' },
+  { year: '2026', title: 'Le grand soir', text: 'Le 04 avril 2026 devient le point culminant de cette decennie: un concert manifeste pour celebrer 10 ans du gang.', images: ['/img/history/2026.jpeg'], cssClass: 'note-11 is-current', accent: 'accent-gold' }
 ];
 
 export default function History() {
@@ -56,7 +57,7 @@ export default function History() {
         <div className="section-label">L'Artiste &amp; L'Histoire</div>
         <div className="histoire-heading-row">
           <div>
-            <div className="histoire-count">10</div>
+            <div className="histoire-count">11</div>
             <h2 className="histoire-title"><span className="red">MOMENTS</span> CLES</h2>
             
           </div>

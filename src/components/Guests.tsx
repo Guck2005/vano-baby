@@ -13,13 +13,15 @@ import {
 } from '@/components/ui/carousel';
 
 const guests = [
-  { name: 'Fanicko',      role: 'Invite confirme',   img: '/img/guest/fanicko.jpg',       stat: '31K' },
-  { name: 'Guest Prime',  role: 'Line-up secret',    img: '/img/acces_vano.png',           stat: '28K' },
-  { name: 'Vano Baby',    role: 'Artiste principal', img: '/img/hero_image.png',           stat: '50K' },
-  { name: 'Legend X',     role: 'Feat exclusif',     img: '/img/background_histoire.png', stat: '47K' },
-  { name: 'Guest Mystic', role: 'Performance live',  img: '/img/background_hero.png',     stat: '19K' },
-  { name: 'Special K',    role: 'Set surprise',      img: '/img/acces_vano.png',           stat: '23K' },
-  { name: 'Reveal Soon',  role: 'Annonce a venir',   img: '/img/background_histoire.png', stat: '17K' },
+  { name: 'Fanicko',      role: 'Invite confirme',   img: '/img/guest/fanicko.jpg',         stat: '31K' },
+  { name: 'Nikanor',      role: 'Invite confirme',   img: '/img/guest/Nikanor.jpg',          stat: '28K' },
+  { name: 'Togbé Yéton',  role: 'Invite confirme',   img: '/img/guest/Togbe_Yéton.jpg',      stat: '47K' },
+  { name: 'Conex & Don',  role: 'Invite confirme',   img: '/img/guest/Conex&Don.jpg',        stat: '23K' },
+  { name: 'Bobo Wê',      role: 'Invite confirme',   img: '/img/guest/Bobo_Wê.jpg',          stat: '19K' },
+  { name: 'Axel Merryl',  role: 'Invite confirme',   img: '/img/guest/Axel_Merryl.jpg',      stat: '25K' },
+  { name: 'Zeynab',       role: 'Invite confirme',   img: '/img/guest/Zeynab.jpg',           stat: '22K' },
+  { name: 'Ahoôto',       role: 'Invite confirme',   img: '/img/guest/ahoôto.jpg',           stat: '17K' },
+  { name: 'Sessimè',      role: 'Invite confirme',   img: '/img/guest/Sessimè.jpg',          stat: '34K' },
 ];
 
 function GuestsInner({ onOpen }: { onOpen: (src: string, alt: string) => void }) {

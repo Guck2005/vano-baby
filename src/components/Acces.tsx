@@ -60,7 +60,7 @@ export default function Acces() {
           <div className="acces-right">
             <div className="acces-img-wrap">
               <Image
-                src="/img/acces_vano.png"
+                src="/img/acces_vano1.png"
                 alt="Vano Baby"
                 width={520}
                 height={740}
