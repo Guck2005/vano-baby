@@ -14,12 +14,12 @@ import {
 
 const guests = [
   { name: 'Fanicko',      role: 'Invite confirme',   img: '/img/guest/fanicko.jpg',       stat: '31K' },
-  { name: 'Guest Prime',  role: 'Line-up secret',    img: '/img/hero_image.png',           stat: '28K' },
+  { name: 'Guest Prime',  role: 'Line-up secret',    img: '/img/acces_vano.png',           stat: '28K' },
   { name: 'Vano Baby',    role: 'Artiste principal', img: '/img/hero_image.png',           stat: '50K' },
   { name: 'Legend X',     role: 'Feat exclusif',     img: '/img/background_histoire.png', stat: '47K' },
   { name: 'Guest Mystic', role: 'Performance live',  img: '/img/background_hero.png',     stat: '19K' },
-  { name: 'Special K',    role: 'Set surprise',      img: '/img/hero_image.png',           stat: '23K' },
-  { name: 'Reveal Soon',  role: 'Annonce a venir',   img: '/img/background_hero.png',     stat: '17K' },
+  { name: 'Special K',    role: 'Set surprise',      img: '/img/acces_vano.png',           stat: '23K' },
+  { name: 'Reveal Soon',  role: 'Annonce a venir',   img: '/img/background_histoire.png', stat: '17K' },
 ];
 
 function GuestsInner({ onOpen }: { onOpen: (src: string, alt: string) => void }) {

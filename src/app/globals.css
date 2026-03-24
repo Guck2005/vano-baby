@@ -1109,7 +1109,7 @@ nav {
 .histoire-cta {
   display: flex;
   justify-content: center;
-  margin-top: 72px;
+  margin-top: 25px;
 }
 
 .story-shell {
@@ -1885,7 +1885,7 @@ nav {
     margin-top: 20px;
   }
   .histoire-section {
-    padding: 60px 20px 80px;
+    padding: 60px 20px 50px;
   }
   .histoire-heading-row {
     flex-direction: column;
@@ -1968,7 +1968,7 @@ nav {
     width: 24px;
   }
   .faq-section {
-    padding: 70px 20px 84px;
+    padding: 0px 20px 0px;
   }
   .faq-content {
     max-width: none;
@@ -2072,6 +2072,10 @@ nav {
 
 .billet-header {
   margin-bottom: 64px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .billet-title {
@@ -2481,7 +2485,7 @@ nav {
 /* Mobile */
 @media (max-width: 520px) {
   .billet-section {
-    padding: 56px 16px 64px;
+    padding: 0px 16px 0px;
   }
   .billet-header {
     margin-bottom: 32px;
