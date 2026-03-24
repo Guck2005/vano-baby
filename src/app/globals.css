@@ -876,7 +876,11 @@ nav {
   margin-top: 10px;
   font-size: clamp(44px, 7vw, 88px);
   letter-spacing: -.03em;
-  color: #f6f0ea;
+  color: #ffffff;
+}
+
+.guests-title .red {
+  color: #ee0000;
 }
 
 /* ── Embla carousel wrapper ── */
