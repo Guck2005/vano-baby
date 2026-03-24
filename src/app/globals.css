@@ -1003,7 +1003,7 @@ nav {
 }
 
 .guests-spotlight-name {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #fff8f3;
 }
@@ -2223,8 +2223,8 @@ nav {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: .9rem;
-  color: rgba(245, 240, 235, .55);
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
   font-family: var(--font-space-mono), monospace;
 }
 
@@ -2362,7 +2362,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
-  color: rgba(245,240,235,.65);
+  color: rgb(245, 240, 235);
 }
 
 .billet-recap-row strong {
