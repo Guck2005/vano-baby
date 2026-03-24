@@ -5,29 +5,29 @@ import Image from 'next/image';
 
 const faqItems = [
   {
-    question: 'Comment acheter mes billets pour le concert du 04 avril 2026 ?',
+    question: 'On prend nos tickets où ?',
     answer:
-      "La reservation se fait en ligne via la billetterie du site. Choisis ton offre, valide tes informations, puis conserve ta confirmation pour l'acces le jour de l'evenement.",
+      "Directement ici sur notre site. Vous choisissez votre catégorie, vous sélectionnez vos places et vous validez. Ne perdez pas vos tickets car c'est ça qui vous donnera accès au Majestic le 04 avril.",
   },
   {
-    question: "A quelle heure faut-il arriver sur place ?",
+    question: "On arrive à quelle heure ?",
     answer:
-      "Nous conseillons d'arriver en avance pour faciliter l'acces, profiter de l'ambiance et t'installer sereinement avant le debut du show. Les horaires detailes seront rappeles avec les informations pratiques.",
+      "Les portes du Majestic s'ouvreront à 16h. Venez tôt. Vraiment. J'ai préparé des surprises pour les premiers qui seront là.",
   },
   {
-    question: "Le billet est-il nominatif ou transferable ?",
+    question: "On peut donner notre ticket à quelqu'un d'autre ?",
     answer:
-      "Selon la formule choisie, certaines reservations peuvent etre controlees a l'entree. Garde bien ton justificatif et verifie les conditions indiquees lors de l'achat pour eviter toute mauvaise surprise.",
+      "Selon votre catégorie, votre billet peut être vérifié à l'entrée. Vérifiez les conditions au moment de votre achat. Et si vous pouvez venir, venez. Cette soirée ne se reproduira jamais.",
   },
   {
-    question: "Y aura-t-il des invites et des surprises pendant la soiree ?",
+    question: "Il y aura des guests ? Des surprises ?",
     answer:
-      "Oui. L'evenement est pense comme une grande celebration des 10 ans du gang, avec des apparitions, des moments exclusifs et une mise en scene speciale autour de Vano Baby.",
+      "Oui!!! Regardez plus haut sur le site. Les noms confirmés sont là. Mais comme toujours, je garde les meilleures surprises pour le soir même.",
   },
   {
-    question: "Que se passe-t-il si je ne peux plus venir ?",
+    question: "On peut payer sur place ?",
     answer:
-      "Si un empechement survient, refere-toi aux conditions de la billetterie associees a ton achat. Nous recommandons de verifier ces informations au moment de la commande pour connaitre les modalites exactes.",
+      "Oui. Mais ne prenez pas le risque d'attendre parce que les places partent vite. Réservez maintenant pendant qu'il en reste.",
   },
 ];
 

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Syne, Bebas_Neue, Space_Mono, Carattere } from 'next/font/google';
+import { Syne, Bebas_Neue, Carattere } from 'next/font/google';
 import SmoothScrollAnchors from '@/components/SmoothScrollAnchors';
 import './globals.css';
 
@@ -13,13 +13,6 @@ const bebasNeue = Bebas_Neue({
   weight: '400', 
   subsets: ['latin'], 
   variable: '--font-bebas-neue',
-  display: 'swap',
-});
-
-const spaceMono = Space_Mono({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  variable: '--font-space-mono',
   display: 'swap',
 });
 
@@ -53,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${syne.variable} ${bebasNeue.variable} ${spaceMono.variable} ${carattere.variable}`}>
+    <html lang="fr" className={`${syne.variable} ${bebasNeue.variable} ${carattere.variable}`}>
       <body>
         <SmoothScrollAnchors />
         {children}

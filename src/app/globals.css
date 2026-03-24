@@ -1,4 +1,5 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+:root { --font-space-mono: var(--font-syne); }
 html, body { height: 100%; background: #0f0f0f; overflow-x: hidden; font-family: var(--font-syne), sans-serif; }
 html { scroll-behavior: smooth; }
 
@@ -2830,7 +2831,7 @@ nav {
 .acces-body {
   font-size: 1rem;
   line-height: 1.7;
-  color: rgba(245, 240, 235, 0.7);
+  color: rgb(255, 255, 255);
   max-width: 480px;
 }
 
@@ -2849,7 +2850,7 @@ nav {
   gap: 14px;
   font-size: 1rem;
   line-height: 1.45;
-  color: rgba(245, 240, 235, 0.85);
+  color: rgb(255, 255, 255);
 }
 
 .acces-icon-box {
@@ -2857,12 +2858,18 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
   background: #ee0000;
   font-size: 1rem;
   line-height: 1;
+}
+
+.acces-icon-box svg {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
 }
 
 /* Right column — image */
