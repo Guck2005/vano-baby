@@ -1874,7 +1874,7 @@ nav {
   }
   .guests-spotlight-card,
   .guests-spotlight-card.is-featured {
-    min-height: 280px;
+    min-height: 420px;
     transform: none;
   }
   .guests-spotlight-name {
