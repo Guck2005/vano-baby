@@ -566,7 +566,7 @@ p {
 nav {
   position: absolute;
   top: 0; left: 0; right: 0;
-  z-index: 10;
+  z-index: 12010;
   padding: 20px 48px;
   max-width: 1100px;
   margin: 0 auto;
@@ -1968,7 +1968,7 @@ nav {
     height: 100%;
   }
   .hype-strip-section {
-    margin-top: -46px;
+    margin-top: -56px;
   }
   .hype-strip-shell {
     height: 92px;

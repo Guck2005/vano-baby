@@ -73,7 +73,7 @@ export default function Guests() {
 
         <div className="guests-copy-card">
           <div>
-            <div className="guests-label">Invités &amp; line-up</div>
+            <div className="guests-label">Guests &amp; line-up</div>
             <h2 className="guests-title">Tout <span className="red">Le Gang</span> Sera là</h2>
           </div>
         </div>
