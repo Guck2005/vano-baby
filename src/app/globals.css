@@ -2771,7 +2771,6 @@ nav {
     display: flex;
     justify-content: center;
     overflow: hidden;
-    border-top: 1px solid rgba(255,255,255,.06);
   }
   .acces-img-wrap {
     margin: 0;
@@ -2799,6 +2798,22 @@ nav {
   }
   .acces-title {
     font-size: clamp(20px, 5.5vw, 28px);
+  }
+  .acces-label {
+    /* 1. On change inline-flex en flex pour bien occuper toute la largeur */
+        display: flex !important; 
+        
+        /* 2. C'est CA qui centre le contenu dans un Flexbox */
+        justify-content: center; 
+        
+        /* 3. On garde le text-align au cas où il y aurait du texte brut */
+        text-align: center;
+        
+    
+    text-align: center;
+  }
+  .acces-left .btn-main {
+    width: 100%;
   }
 }
 

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 const scrollToBilletterie = (e: React.MouseEvent) => {
   e.preventDefault();
@@ -8,6 +9,14 @@ const scrollToBilletterie = (e: React.MouseEvent) => {
 };
 
 export default function Acces() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   return (
     <section className="acces-section" id="acces">
       <div className="acces-shell">
@@ -60,7 +69,7 @@ export default function Acces() {
           <div className="acces-right">
             <div className="acces-img-wrap">
               <Image
-                src="/img/acces_vano1.png"
+                src={isMobile ? "/img/acces_vano2.png" : "/img/acces_vano.png"}
                 alt="Vano Baby"
                 width={520}
                 height={740}
