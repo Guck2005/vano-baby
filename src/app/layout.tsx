@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Syne, Bebas_Neue, Space_Mono, Carattere } from 'next/font/google';
+import SmoothScrollAnchors from '@/components/SmoothScrollAnchors';
 import './globals.css';
 
 const syne = Syne({ 
@@ -53,7 +54,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${syne.variable} ${bebasNeue.variable} ${spaceMono.variable} ${carattere.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SmoothScrollAnchors />
+        {children}
+      </body>
     </html>
   );
 }

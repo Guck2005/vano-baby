@@ -225,7 +225,7 @@ p {
   font-size: 1.3rem;
   line-height: 1;
   letter-spacing: 0.04em;
-  color: #f5f0eb;
+  color: #fff;
 }
 
 .hcard-value--lg {
@@ -939,7 +939,7 @@ nav {
 .guests-ticket-cta {
   display: flex;
   justify-content: center;
-  margin-top: 28px;
+  margin-top: 80px;
 }
 
 .guests-ticket-btn {
@@ -1055,6 +1055,10 @@ nav {
   position: relative;
 }
 
+.acces-billetterie-bg {
+  position: relative;
+}
+
 .history-acces-bg::before {
   content: '';
   position: absolute;
@@ -1064,7 +1068,21 @@ nav {
   z-index: 0;
 }
 
+.acces-billetterie-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/img/background_global.png') center / cover no-repeat;
+  opacity: 0.4;
+  z-index: 0;
+}
+
 .history-acces-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+.acces-billetterie-bg > * {
   position: relative;
   z-index: 1;
 }
@@ -1099,7 +1117,7 @@ nav {
 
 .histoire-title {
   font-size: clamp(44px, 7vw, 88px);
-  color: #f5f0eb;
+  color: #fff;
   margin-top: 4px;
 }
 
@@ -1125,7 +1143,7 @@ nav {
 .histoire-cta {
   display: flex;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: 80px;
 }
 
 .histoire-cta .btn-main {
@@ -1468,7 +1486,7 @@ nav {
 .faq-section {
   position: relative;
   overflow: hidden;
-  padding: 100px 20px 100px;
+  padding: 0px 20px 100px;
   background: url('/img/background_faq.png') center/cover no-repeat;
 }
 
@@ -1508,7 +1526,7 @@ nav {
   margin-top: 14px;
   font-size: clamp(44px, 7vw, 88px);
   letter-spacing: .05em;
-  color: #f5f0eb;
+  color: #fff;
   text-align: center;
 }
 
@@ -2194,7 +2212,7 @@ nav {
 .billet-section {
   position: relative;
   padding: 100px 20px 120px;
-  background: #0f0f0f;
+  background: transparent;
   overflow: clip;
 }
 
@@ -2620,7 +2638,7 @@ nav {
 /* Mobile */
 @media (max-width: 520px) {
   .billet-section {
-    padding: 24px 16px 0px;
+    padding: 24px 16px 60px;
   }
   .billet-header {
     margin-bottom: 32px;
@@ -2687,7 +2705,7 @@ nav {
 .acces-section {
   position: relative;
   overflow: hidden;
-  padding: 100px 20px;
+  padding: 100px 20px 0px;
   /* background:
     radial-gradient(circle at 88% 14%, #ee00002a, #0000 28%),
     radial-gradient(circle at 8% 85%, #f5f0eb0d, #0000 26%),
@@ -2712,9 +2730,9 @@ nav {
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(30, 22, 22, 0.72);
   backdrop-filter: blur(18px);
-  box-shadow:
+  /* box-shadow:
     0 2px 0 rgba(255, 255, 255, 0.06) inset,
-    0 40px 80px rgba(0, 0, 0, 0.38);
+    0 40px 80px rgba(0, 0, 0, 0.38); */
   /* pas de overflow:hidden — l'image déborde haut/bas */
 }
 
@@ -2885,7 +2903,7 @@ nav {
 .booking-overlay {
   position: fixed;
   inset: 0;
-  z-index: 500;
+  z-index: 12000;
   background: rgba(0,0,0,.72);
   backdrop-filter: blur(6px);
   display: flex;

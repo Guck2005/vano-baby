@@ -15,8 +15,11 @@ export default function Home() {
       <Hero />
       <HypeStrip />
       <Guests />
-      <Acces />
-      <Billetterie />
+      <div className="acces-billetterie-bg">
+        <Acces />
+        <Billetterie />
+      </div>
+      <HypeStrip />
       <div className="history-acces-bg">
         <History />
       </div>

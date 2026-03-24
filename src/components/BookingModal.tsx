@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 interface TicketInfo {
   id: string;
@@ -25,6 +26,7 @@ type Step = 'form' | 'loading' | 'success';
 
 export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props) {
   const [step, setStep] = useState<Step>('form');
+  const [mounted, setMounted] = useState(false);
   const [nom, setNom] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -32,6 +34,10 @@ export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props)
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const total = ticket.price * qty;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -62,7 +68,9 @@ export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props)
     setTimeout(() => setStep('success'), 2500);
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div
       className="booking-overlay"
       onClick={step === 'form' ? onClose : undefined}
@@ -185,6 +193,7 @@ export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props)
         )}
 
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
