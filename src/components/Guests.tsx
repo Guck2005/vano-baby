@@ -87,7 +87,7 @@ export default function Guests() {
         )}
 
         <div className="guests-ticket-cta">
-          <a href="#billetterie" className="btn-main" onClick={(e) => { e.preventDefault(); document.getElementById('billetterie')?.scrollIntoView({ behavior: 'smooth' }); }}>
+          <a href="#billetterie" className="btn-main">
             Prendre mon ticket
             <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
               <path d="M3 7.5H12M8.5 4L12 7.5L8.5 11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>

@@ -66,6 +66,7 @@ export default function FAQ() {
                         height={26}
                         className="faq-eye"
                         unoptimized
+                        loading="lazy"
                       />
                     </span>
                   </button>

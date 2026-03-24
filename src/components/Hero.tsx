@@ -1,52 +1,15 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Navbar from './Navbar';
 
 export default function Hero() {
-  const [timeLeft, setTimeLeft] = useState({ d: '00', h: '00', m: '00', s: '00' });
-
-  useEffect(() => {
-    const target = new Date('2026-04-04T16:00:00').getTime();
-
-    const updateDiff = () => {
-      const diff = target - new Date().getTime();
-      if (diff <= 0) {
-        setTimeLeft({ d: '00', h: '00', m: '00', s: '00' });
-        return 0;
-      }
-
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-
-      setTimeLeft({
-        d: String(d).padStart(2, '0'),
-        h: String(h).padStart(2, '0'),
-        m: String(m).padStart(2, '0'),
-        s: String(s).padStart(2, '0'),
-      });
-      return diff;
-    };
-
-    updateDiff();
-    const interval = setInterval(() => {
-      const diff = updateDiff();
-      if (diff <= 0) clearInterval(interval);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="hero">
       <div className="hero-bg">
         <Image
           src="/img/background_hero.png"
-          alt="Background"
+          alt=""
           fill
+          sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'center top' }}
           priority
         />
@@ -107,10 +70,6 @@ export default function Hero() {
           <a
             href="#billetterie"
             className="btn-main"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('billetterie')?.scrollIntoView({ behavior: 'smooth' });
-            }}
           >
             Prendre mes places
             <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
@@ -185,8 +144,10 @@ export default function Hero() {
           src="/img/hero_image.png"
           alt="Vano Baby au premier plan"
           fill
+          sizes="100vw"
           style={{ objectFit: 'contain', objectPosition: 'center center' }}
           priority
+          fetchPriority="high"
         />
       </div>
 

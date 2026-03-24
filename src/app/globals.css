@@ -117,10 +117,9 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.1; /* Très léger */
+  opacity: 0.1;
   pointer-events: none;
-  /* Image de grain très fin */
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   filter: contrast(150%) brightness(100%);
   z-index: 1;
 }
@@ -1151,6 +1150,10 @@ nav {
   gap: 48px;
 }
 
+.story-board-mobile {
+  display: none;
+}
+
 .story-row {
   position: relative;
   display: flex;
@@ -1978,27 +1981,41 @@ nav {
     margin: 0 -20px;
     padding: 0 20px;
   }
-  .story-board {
-    display: flex;
-    gap: 18px;
-    overflow-x: auto;
-    padding: 10px 2px 18px;
-    scroll-snap-type: x mandatory;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .story-board::-webkit-scrollbar {
+  .story-board--desktop {
     display: none;
+  }
+  .story-board-mobile {
+    display: block;
+    padding: 10px 34px 18px;
+  }
+  .story-board-mobile .carousel-content {
+    margin-left: 0;
+    align-items: stretch;
+  }
+  .story-board-mobile-item {
+    width: 100%;
+    padding-left: 0;
+  }
+  .story-board-mobile .carousel-btn {
+    top: 44%;
+    color: #f6f0ea;
+  }
+  .story-board-mobile-nav--prev {
+    left: 0;
+  }
+  .story-board-mobile-nav--next {
+    right: 0;
   }
   .story-note {
     position: relative;
     grid-column: auto;
-    min-width: 82vw;
-    max-width: 82vw;
-    flex: 0 0 82vw;
+    min-width: 100%;
+    max-width: 100%;
+    flex: 1 0 auto;
     height: 420px;
-    scroll-snap-align: center;
     transform: none !important;
+    opacity: 1;
+    transition: none;
     display: flex;
     flex-direction: column;
   }
@@ -2743,6 +2760,11 @@ nav {
   display: block;
   object-fit: contain;
   object-position: top center;
+}
+.acces-img--mobile { display: none; }
+@media (max-width: 767px) {
+  .acces-img--desktop { display: none; }
+  .acces-img--mobile { display: block; }
 }
 
 /* Tablet */

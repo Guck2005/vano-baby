@@ -2,6 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 
 const steps = [
   { year: '2016', title: 'Le gang prend vie', text: 'Les premieres apparitions installent une voix, une attitude et une energie qui commencent deja a marquer la scene.', images: ['/img/history/2016.jpg', '/img/history/2016_1_1.jpg', '/img/history/2016_1_2.jpg', '/img/history/2016_2.jpg', '/img/history/2016_3.jpg', '/img/history/2016_4.jpg', '/img/history/2016_5.jpg'], cssClass: 'note-1', accent: 'accent-red' },
@@ -19,11 +26,33 @@ const steps = [
 
 export default function History() {
   const [activeSlides, setActiveSlides] = useState<Record<number, number>>({});
+  const [isMobile, setIsMobile] = useState(false);
   const boardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const updateViewport = () => setIsMobile(mediaQuery.matches);
+
+    updateViewport();
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', updateViewport);
+      return () => mediaQuery.removeEventListener('change', updateViewport);
+    }
+
+    mediaQuery.addListener(updateViewport);
+    return () => mediaQuery.removeListener(updateViewport);
+  }, []);
 
   useEffect(() => {
     const cards = boardRef.current?.querySelectorAll<HTMLElement>('.story-note');
     if (!cards) return;
+
+    if (isMobile) {
+      cards.forEach((card) => card.classList.add('is-visible'));
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -39,7 +68,7 @@ export default function History() {
     );
     cards.forEach((card) => observer.observe(card));
     return () => observer.disconnect();
-  }, []);
+  }, [isMobile]);
 
   const goToSlide = (cardIndex: number, slideIndex: number) => {
     setActiveSlides((prev) => ({ ...prev, [cardIndex]: slideIndex }));
@@ -49,6 +78,75 @@ export default function History() {
     const current = activeSlides[cardIndex] ?? 0;
     const next = (current + direction + total) % total;
     setActiveSlides((prev) => ({ ...prev, [cardIndex]: next }));
+  };
+
+  const renderStoryNote = (
+    step: (typeof steps)[number],
+    idx: number,
+    forceVisible = false,
+    keyValue?: string
+  ) => {
+    const currentSlide = activeSlides[idx] ?? 0;
+
+    return (
+      <article key={keyValue} className={`story-note ${step.cssClass}${forceVisible ? ' is-visible' : ''}`} data-idx={idx}>
+        <div className="story-tape" aria-hidden="true" />
+        <div className="story-card">
+          <div className={`story-quote ${step.accent}`}>
+            <div className="story-carousel">
+              <div className="story-carousel-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+                {step.images.map((image, imageIndex) => (
+                  <div className="story-carousel-slide" key={`${step.year}-${imageIndex}`}>
+                    <div className="story-quote-media">
+                      <Image
+                        src={image}
+                        alt={`${step.title} ${imageIndex + 1}`}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        sizes="(max-width: 768px) 100vw, 240px"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button
+                type="button"
+                className="story-carousel-nav prev"
+                onClick={() => shiftSlide(idx, -1, step.images.length)}
+                aria-label={`Image precedente ${step.title}`}
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                className="story-carousel-nav next"
+                onClick={() => shiftSlide(idx, 1, step.images.length)}
+                aria-label={`Image suivante ${step.title}`}
+              >
+                ›
+              </button>
+            </div>
+            <div className="story-carousel-dots">
+              {step.images.map((_, imageIndex) => (
+                <button
+                  type="button"
+                  key={`${step.year}-dot-${imageIndex}`}
+                  className={`story-carousel-dot${currentSlide === imageIndex ? ' is-active' : ''}`}
+                  onClick={() => goToSlide(idx, imageIndex)}
+                  aria-label={`Aller a l'image ${imageIndex + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="story-meta-row">
+            <div className="story-year">{step.year}</div>
+            <div className="story-mini-tag">Archive</div>
+          </div>
+          <h3>{step.title}</h3>
+          <p>{step.text}</p>
+        </div>
+      </article>
+    );
   };
 
   return (
@@ -66,7 +164,7 @@ export default function History() {
       </div>
 
       <div className="story-shell">
-        <div className="story-board" ref={boardRef}>
+        <div className="story-board story-board--desktop" ref={boardRef}>
           {([steps.slice(0, 4), steps.slice(4, 8), steps.slice(8)] as const).map((group, rowIdx) => (
             <div key={rowIdx} className={`story-row${rowIdx === 2 ? ' story-row--last' : ''}`}>
               {rowIdx < 2 ? (
@@ -108,48 +206,27 @@ export default function History() {
               )}
               {group.map((step, i) => {
                 const idx = rowIdx * 4 + i;
-                const currentSlide = activeSlides[idx] ?? 0;
-                return (
-                  <article className={`story-note ${step.cssClass}`} key={step.year} data-idx={idx}>
-                    <div className="story-tape" aria-hidden="true" />
-                    <div className="story-card">
-                      <div className={`story-quote ${step.accent}`}>
-                        <div className="story-carousel">
-                          <div className="story-carousel-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                            {step.images.map((image, imageIndex) => (
-                              <div className="story-carousel-slide" key={`${step.year}-${imageIndex}`}>
-                                <div className="story-quote-media">
-                                  <Image src={image} alt={`${step.title} ${imageIndex + 1}`} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 240px" />
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                          <button type="button" className="story-carousel-nav prev" onClick={() => shiftSlide(idx, -1, step.images.length)} aria-label={`Image precedente ${step.title}`}>‹</button>
-                          <button type="button" className="story-carousel-nav next" onClick={() => shiftSlide(idx, 1, step.images.length)} aria-label={`Image suivante ${step.title}`}>›</button>
-                        </div>
-                        <div className="story-carousel-dots">
-                          {step.images.map((_, imageIndex) => (
-                            <button type="button" key={`${step.year}-dot-${imageIndex}`} className={`story-carousel-dot${currentSlide === imageIndex ? ' is-active' : ''}`} onClick={() => goToSlide(idx, imageIndex)} aria-label={`Aller a l'image ${imageIndex + 1}`} />
-                          ))}
-                        </div>
-                      </div>
-                      <div className="story-meta-row">
-                        <div className="story-year">{step.year}</div>
-                        <div className="story-mini-tag">Archive</div>
-                      </div>
-                      <h3>{step.title}</h3>
-                      <p>{step.text}</p>
-                    </div>
-                  </article>
-                );
+                return renderStoryNote(step, idx, false, step.year);
               })}
             </div>
           ))}
         </div>
+
+        <Carousel opts={{ align: 'center', loop: false }} className="story-board-mobile">
+          <CarouselContent>
+            {steps.map((step, idx) => (
+              <CarouselItem key={`mobile-${step.year}`} className="story-board-mobile-item">
+                {renderStoryNote(step, idx, true)}
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="story-board-mobile-nav story-board-mobile-nav--prev" />
+          <CarouselNext className="story-board-mobile-nav story-board-mobile-nav--next" />
+        </Carousel>
       </div>
 
       <div className="histoire-cta">
-        <a href="#billetterie" className="btn-main" onClick={(e) => { e.preventDefault(); document.getElementById('billetterie')?.scrollIntoView({ behavior: 'smooth' }); }}>
+        <a href="#billetterie" className="btn-main">
           Prendre mon ticket
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
