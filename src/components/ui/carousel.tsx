@@ -147,7 +147,7 @@ function CarouselPrevious({ className, children, ...props }: React.ComponentProp
       {...props}
     >
       {children ?? (
-        <svg width="40" height="40" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <svg width="60" height="60" viewBox="0 0 36 36" fill="none" aria-hidden="true">
           <path d="M22 26l-8-8 8-8" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M16 26l-8-8 8-8" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
@@ -167,7 +167,7 @@ function CarouselNext({ className, children, ...props }: React.ComponentProps<'b
       {...props}
     >
       {children ?? (
-        <svg width="40" height="40" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <svg width="60" height="60" viewBox="0 0 36 36" fill="none" aria-hidden="true">
           <path d="M14 10l8 8-8 8" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M20 10l8 8-8 8" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>

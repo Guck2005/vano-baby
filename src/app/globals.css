@@ -75,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   font-family: var(--font-syne), sans-serif;
-  font-size: .96rem;
+  font-size: 1.2rem;
   line-height: 1.7;
 }
 
@@ -1146,8 +1146,21 @@ nav {
 .story-note.note-6  { grid-column: 4 / span 3;  transform: rotate(2deg)  translateY(32px); }
 .story-note.note-7  { grid-column: 7 / span 3;  transform: rotate(-2deg) translateY(32px); }
 .story-note.note-8  { grid-column: 10 / span 3; transform: rotate(4deg)  translateY(32px); }
-.story-note.note-9  { grid-column: 4 / span 3;  transform: rotate(-4deg) translateY(32px); }
-.story-note.note-10 { grid-column: 7 / span 3;  transform: rotate(3deg)  translateY(32px); }
+.story-last-row {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.story-last-row .story-note {
+  width: calc((100% - 2 * 30px) / 4);
+  flex-shrink: 0;
+}
+
+.story-note.note-9  { transform: rotate(-4deg) translateY(32px); }
+.story-note.note-10 { transform: rotate(3deg)  translateY(32px); }
+.story-note.note-11 { transform: rotate(-3deg) translateY(32px); }
 
 .story-note.note-1.is-visible  { transform: rotate(-4deg) translateY(0); }
 .story-note.note-2.is-visible  { transform: rotate(3deg)  translateY(0); }
@@ -1159,6 +1172,7 @@ nav {
 .story-note.note-8.is-visible  { transform: rotate(4deg)  translateY(0); }
 .story-note.note-9.is-visible  { transform: rotate(-4deg) translateY(0); }
 .story-note.note-10.is-visible { transform: rotate(3deg)  translateY(0); }
+.story-note.note-11.is-visible { transform: rotate(-3deg) translateY(0); }
 
 .story-tape {
   position: absolute;
@@ -1198,6 +1212,10 @@ nav {
 }
 
 .story-note.note-10 .story-tape {
+  background: linear-gradient(180deg, rgba(239, 212, 97, 0.9), rgba(201, 167, 27, 0.8));
+}
+
+.story-note.note-11 .story-tape {
   background: linear-gradient(180deg, rgba(239, 212, 97, 0.9), rgba(201, 167, 27, 0.8));
 }
 
@@ -2611,7 +2629,7 @@ nav {
 }
 
 .acces-body {
-  font-size: .98rem;
+  font-size: 1.2rem;
   line-height: 1.7;
   color: rgba(245, 240, 235, 0.7);
   max-width: 480px;
@@ -2630,7 +2648,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: .98rem;
+  font-size: 1.2rem;
   line-height: 1.45;
   color: rgba(245, 240, 235, 0.85);
 }
