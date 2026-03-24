@@ -1924,8 +1924,11 @@ nav {
     min-width: 82vw;
     max-width: 82vw;
     flex: 0 0 82vw;
+    height: 420px;
     scroll-snap-align: center;
     transform: none !important;
+    display: flex;
+    flex-direction: column;
   }
   .story-note.is-current::after {
     right: 14px;
@@ -1934,6 +1937,21 @@ nav {
   .story-card {
     padding: 12px;
     border-radius: 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .story-quote {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .story-carousel {
+    flex: 1;
+  }
+  .story-quote-media {
+    aspect-ratio: unset;
+    height: 100%;
   }
   .story-note h3 {
     font-size: 1.35rem;
