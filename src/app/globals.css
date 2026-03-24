@@ -1978,7 +1978,7 @@ nav {
     margin-top: 20px;
   }
   .histoire-section {
-    padding: 80px 20px 50px;
+    padding: 50px 20px 50px;
   }
   .histoire-heading-row {
     flex-direction: column;
@@ -1993,6 +1993,9 @@ nav {
     padding-top: 0;
     font-size: .74rem;
     width: 100%;
+  }
+  .histoire-cta {
+    margin-top: 60px;
   }
   .story-shell {
     overflow: hidden;
@@ -3225,5 +3228,82 @@ nav {
   }
   .booking-title {
     font-size: 1.7rem;
+  }
+}
+
+.site-footer {
+  position: relative;
+  padding: 34px 20px 42px;
+  border-top: 1px solid rgba(245, 240, 235, 0.1);
+  background:
+    radial-gradient(circle at 50% -20%, rgba(238, 0, 0, 0.16), rgba(238, 0, 0, 0) 56%),
+    linear-gradient(180deg, #0d0d0d 0%, #080808 100%);
+  text-align: center;
+  overflow: hidden;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(560px, 82vw);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, rgba(238, 0, 0, 0), rgba(238, 0, 0, 0.72), rgba(238, 0, 0, 0));
+}
+
+.site-footer-shell {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  /* border: 1px solid rgba(245, 240, 235, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35); */
+}
+
+.site-footer-line {
+  margin: 0;
+  font-family: var(--font-bebas-neue), sans-serif;
+  font-size: clamp(1rem, 2.8vw, 1.3rem);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 235, 0.92);
+}
+
+.site-footer-line span {
+  color: #ee0000;
+}
+
+.site-footer-note {
+  margin: 0;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 235, 0.54);
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 24px 16px 30px;
+  }
+
+  .site-footer-shell {
+    width: 100%;
+    max-width: 420px;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
+  .site-footer-note {
+    font-size: 0.6rem;
   }
 }

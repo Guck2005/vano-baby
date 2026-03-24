@@ -25,6 +25,16 @@ export default function Home() {
       </div>
       <FAQ />
       <OwlChatbot />
+      <footer className="site-footer">
+        <div className="site-footer-shell">
+          <p className="site-footer-line">
+            Developpe dans le cadre de <span>Techchallenge</span>
+          </p>
+          <p className="site-footer-note">
+            Ce site est realise comme exercice de demonstration.
+          </p>
+        </div>
+      </footer>
     </main>
   );
 }
