@@ -1,4 +1,4 @@
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { height: 100%; background: #0f0f0f; overflow-x: hidden; font-family: var(--font-syne), sans-serif; }
 html { scroll-behavior: smooth; }
 
@@ -1744,6 +1744,18 @@ nav {
 
 /* ── Mobile (≤ 768px) ── */
 @media (max-width: 768px) {
+  .btn-main,
+  .btn-sec,
+  .nav-cta,
+  .guests-ticket-btn,
+  .billet-recap-cta,
+  .billet-card-cta,
+  .booking-submit,
+  .booking-op {
+    padding: 14px 24px;
+    font-size: .8rem;
+  }
+
   .hero-bg { opacity: 1; }
   .hero-bg img {
     object-fit: contain;
