@@ -1849,7 +1849,7 @@ nav {
     font-size: 1.1rem;
   }
   .guests-section {
-    padding: 0px 20px 56px;
+    padding: 0px 20px 0px;
   }
   .guests-shell {
     padding: 0;
@@ -1868,6 +1868,7 @@ nav {
   }
   .guests-carousel {
     padding: 0;
+    margin-bottom: 25px;
   }
   .carousel-item {
     width: 80vw;
