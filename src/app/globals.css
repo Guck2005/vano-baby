@@ -89,7 +89,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .hero-bg {
@@ -1948,6 +1948,13 @@ nav {
   }
   .story-carousel {
     flex: 1;
+    height: 100%;
+  }
+  .story-carousel-track {
+    height: 100%;
+  }
+  .story-carousel-slide {
+    height: 100%;
   }
   .story-quote-media {
     aspect-ratio: unset;
