@@ -59,10 +59,7 @@ export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props)
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setStep('loading');
-    setTimeout(() => {
-      onSuccess(ticket.id, qty);
-      setStep('success');
-    }, 2500);
+    setTimeout(() => setStep('success'), 2500);
   };
 
   return (
@@ -183,7 +180,7 @@ export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props)
             <p className="booking-success-msg">
               Votre place a été bien enregistrée. Consultez votre mail pour recevoir votre ticket et votre QR code d&apos;entrée.
             </p>
-            <button className="booking-submit" onClick={onClose}>Fermer</button>
+            <button className="booking-submit" onClick={() => { onSuccess(ticket.id, qty); onClose(); }}>Fermer</button>
           </div>
         )}
 

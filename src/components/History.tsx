@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 const steps = [
@@ -18,6 +18,27 @@ const steps = [
 
 export default function History() {
   const [activeSlides, setActiveSlides] = useState<Record<number, number>>({});
+  const boardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const cards = boardRef.current?.querySelectorAll<HTMLElement>('.story-note');
+    if (!cards) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const delay = Number(el.dataset.idx) * 150;
+            setTimeout(() => el.classList.add('is-visible'), delay);
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
 
   const goToSlide = (cardIndex: number, slideIndex: number) => {
     setActiveSlides((prev) => ({ ...prev, [cardIndex]: slideIndex }));
@@ -44,9 +65,9 @@ export default function History() {
       </div>
 
       <div className="story-shell">
-        <div className="story-board">
+        <div className="story-board" ref={boardRef}>
           {steps.map((step, idx) => (
-            <article className={`story-note ${step.cssClass}`} key={idx}>
+            <article className={`story-note ${step.cssClass}`} key={idx} data-idx={idx}>
               <div className="story-tape" aria-hidden="true" />
               <div className="story-card">
                 {(() => {
@@ -120,7 +141,7 @@ export default function History() {
       </div>
 
       <div className="histoire-cta">
-        <a href="#billetterie" className="btn-main">
+        <a href="#billetterie" className="btn-main" onClick={(e) => { e.preventDefault(); document.getElementById('billetterie')?.scrollIntoView({ behavior: 'smooth' }); }}>
           Prendre mon ticket
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>

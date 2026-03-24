@@ -71,12 +71,10 @@ export default function Billetterie() {
 
   const handleSuccess = (id: string, count: number) => {
     setRemaining((prev) => ({ ...prev, [id]: Math.max(0, prev[id] - count) }));
-    // Reclamper la quantité si elle dépasse le nouveau remaining
     setQty((prev) => ({
       ...prev,
       [id]: Math.min(prev[id], Math.max(1, remaining[id] - count)),
     }));
-    setBooking(null);
   };
 
   return (
@@ -151,21 +149,19 @@ export default function Billetterie() {
                       {fmt(t.price)}<span className="billet-currency"> FCFA</span>
                     </div>
 
-                    {isActive && (
-                      <div className="billet-qty" onClick={(e) => e.stopPropagation()}>
-                        <button
-                          className="billet-qty-btn"
-                          onClick={() => setQtyFor(t.id, -1)}
-                          disabled={qty[t.id] <= 1}
-                        >−</button>
-                        <span className="billet-qty-num">{qty[t.id]}</span>
-                        <button
-                          className="billet-qty-btn"
-                          onClick={() => setQtyFor(t.id, +1)}
-                          disabled={qty[t.id] >= rem}
-                        >+</button>
-                      </div>
-                    )}
+                    <div className={`billet-qty${isActive ? ' is-visible' : ''}`} onClick={(e) => e.stopPropagation()}>
+                      <button
+                        className="billet-qty-btn"
+                        onClick={() => setQtyFor(t.id, -1)}
+                        disabled={qty[t.id] <= 1}
+                      >−</button>
+                      <span className="billet-qty-num">{qty[t.id]}</span>
+                      <button
+                        className="billet-qty-btn"
+                        onClick={() => setQtyFor(t.id, +1)}
+                        disabled={qty[t.id] >= rem}
+                      >+</button>
+                    </div>
                   </div>
 
                   <div className="billet-perf billet-perf--left" />
@@ -192,7 +188,7 @@ export default function Billetterie() {
             </div>
             <div className="billet-recap-row">
               <span>Quantité</span>
-              <div className="billet-qty" style={{ justifyContent: 'flex-end' }}>
+              <div className="billet-qty is-visible" style={{ justifyContent: 'flex-end' }}>
                 <button className="billet-qty-btn" onClick={() => setQtyFor(selected, -1)} disabled={activeQty <= 1}>−</button>
                 <span className="billet-qty-num">{activeQty}</span>
                 <button className="billet-qty-btn" onClick={() => setQtyFor(selected, +1)} disabled={activeQty >= remaining[selected]}>+</button>

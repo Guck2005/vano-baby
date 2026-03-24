@@ -37,7 +37,7 @@ export default function Navbar() {
         </ul>
 
         {/* CTA */}
-        <Link href="#billetterie" className="nav-cta">
+        <Link href="#billetterie" className="nav-cta" onClick={(e) => { e.preventDefault(); document.getElementById('billetterie')?.scrollIntoView({ behavior: 'smooth' }); }}>
           Prendre mes places
         </Link>
 
@@ -60,7 +60,7 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <Link href="#billetterie" className="nav-cta" onClick={() => setOpen(false)}>
+            <Link href="#billetterie" className="nav-cta" onClick={(e) => { e.preventDefault(); setOpen(false); document.getElementById('billetterie')?.scrollIntoView({ behavior: 'smooth' }); }}>
               Prendre mes places
             </Link>
           </li>

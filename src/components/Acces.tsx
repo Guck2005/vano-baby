@@ -1,4 +1,11 @@
+'use client';
+
 import Image from 'next/image';
+
+const scrollToBilletterie = (e: React.MouseEvent) => {
+  e.preventDefault();
+  document.getElementById('billetterie')?.scrollIntoView({ behavior: 'smooth' });
+};
 
 export default function Acces() {
   return (
@@ -41,7 +48,7 @@ export default function Acces() {
               </li>
             </ul>
 
-            <a href="#billetterie" className="btn-main" style={{ marginTop: '0', alignSelf: 'flex-start' }}>
+            <a href="#billetterie" className="btn-main" style={{ marginTop: '0', alignSelf: 'flex-start' }} onClick={scrollToBilletterie}>
               Prendre mon ticket
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
                 <path d="M3 7.5H12M8.5 4L12 7.5L8.5 11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>

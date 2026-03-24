@@ -1,18 +1,11 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-
-function useClickSound(src: string) {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  useEffect(() => { audioRef.current = new Audio(src); }, [src]);
-  return () => { audioRef.current?.play().catch(() => {}); };
-}
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Navbar from './Navbar';
 
 export default function Hero() {
   const [timeLeft, setTimeLeft] = useState({ d: '00', h: '00', m: '00', s: '00' });
-  const playClick = useClickSound('/sounds/click.mp3');
 
   useEffect(() => {
     const target = new Date('2026-04-04T16:00:00').getTime();
@@ -111,7 +104,14 @@ export default function Hero() {
 
       <div className="hero-row">
         <div className="hero-ctas">
-          <a href="#" className="btn-main" onClick={playClick}>
+          <a
+            href="#billetterie"
+            className="btn-main"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('billetterie')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             Prendre mes places
             <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
               <path
