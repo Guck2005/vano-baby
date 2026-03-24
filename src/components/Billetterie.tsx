@@ -139,7 +139,7 @@ export default function Billetterie() {
                     <div className="billet-card-footer" onClick={(e) => e.stopPropagation()}>
                       <div className="billet-card-footer-divider" />
                       <button className="billet-card-cta" onClick={() => setBooking({ ticket: t, qty: cardQty })}>
-                        Réserver {cardQty} place{cardQty > 1 ? 's' : ''} · {fmt(cardTotal)} FCFA
+                        {cardQty === 1 ? 'Réserver ma place' : `Réserver mes ${cardQty} places`}
                       </button>
                     </div>
                   </div>
@@ -206,7 +206,7 @@ export default function Billetterie() {
               className="billet-recap-cta"
               onClick={() => setBooking({ ticket: active, qty: activeQty })}
             >
-              Réserver {activeQty} place{activeQty > 1 ? 's' : ''} · {fmt(total)} FCFA
+              {activeQty === 1 ? 'Réserver ma place' : `Réserver mes ${activeQty} places`}
             </button>
 
             <p className="billet-recap-note">
