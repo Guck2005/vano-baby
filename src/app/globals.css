@@ -1917,7 +1917,7 @@ nav {
     font-size: 1.1rem;
   }
   .guests-section {
-    padding: 0px 20px 0px;
+    padding: 0px 20px 24px;
   }
   .guests-shell {
     padding: 0;
@@ -1953,7 +1953,7 @@ nav {
     margin-top: 20px;
   }
   .histoire-section {
-    padding: 60px 20px 50px;
+    padding: 80px 20px 50px;
   }
   .histoire-heading-row {
     flex-direction: column;
@@ -2155,8 +2155,8 @@ nav {
 
 .billet-title {
   margin-top: 14px;
-  font-size: clamp(44px, 7vw, 88px);
-  color: #f5f0eb;
+  font-size: clamp(37px, 7vw, 88px);
+  color: #ffffff;
 }
 
 .billet-sub {
@@ -2562,7 +2562,7 @@ nav {
 /* Mobile */
 @media (max-width: 520px) {
   .billet-section {
-    padding: 0px 16px 0px;
+    padding: 24px 16px 0px;
   }
   .billet-header {
     margin-bottom: 32px;
@@ -2585,7 +2585,7 @@ nav {
     gap: 10px;
   }
   .billet-perk {
-    font-size: .78rem;
+    font-size: .85rem;
   }
   .billet-price-block {
     padding: 14px 18px;
