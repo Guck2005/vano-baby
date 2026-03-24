@@ -5,10 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const links = [
-  { label: 'La Hype',    href: '#hype'       },
-  { label: "L'Artiste",  href: '#histoire'   },
-  { label: 'Accès',      href: '#acces'      },
-  { label: 'FAQ',        href: '#faq'        },
+  { label: 'Guests',         href: '#guests'      },
+  { label: 'Information',    href: '#acces'       },
+  { label: 'Notre histoire', href: '#histoire'    },
+  { label: 'FAQ',            href: '#faq'         },
+  { label: 'Ma place',       href: '#billetterie' },
 ];
 
 export default function Navbar() {
@@ -17,7 +18,7 @@ export default function Navbar() {
   return (
     <>
       <nav>
-        {/* Logo */}
+        {/* Logo gauche */}
         <Link href="/" className="nav-logo-img">
           <Image src="/img/logo.png" alt="Vano Baby" width={48} height={48} priority />
         </Link>
@@ -27,7 +28,12 @@ export default function Navbar() {
           {links.map((l, i) => (
             <Fragment key={l.href}>
               <li>
-                <Link href={l.href}>{l.label}</Link>
+                <Link
+                  href={l.href}
+                  onClick={(e) => { e.preventDefault(); document.getElementById(l.href.slice(1))?.scrollIntoView({ behavior: 'smooth' }); }}
+                >
+                  {l.label}
+                </Link>
               </li>
               {i < links.length - 1 && (
                 <li className="nav-sep" aria-hidden="true" />
@@ -36,9 +42,9 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
-        <Link href="#billetterie" className="nav-cta" onClick={(e) => { e.preventDefault(); document.getElementById('billetterie')?.scrollIntoView({ behavior: 'smooth' }); }}>
-          Prendre mes places
+        {/* Logo droite */}
+        <Link href="/" className="nav-logo-img nav-logo-right" aria-hidden="true" tabIndex={-1}>
+          <Image src="/img/logo.png" alt="" width={48} height={48} />
         </Link>
 
         {/* Hamburger mobile */}
@@ -56,14 +62,14 @@ export default function Navbar() {
         <ul>
           {links.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} onClick={() => setOpen(false)}>{l.label}</Link>
+              <Link
+                href={l.href}
+                onClick={(e) => { e.preventDefault(); setOpen(false); document.getElementById(l.href.slice(1))?.scrollIntoView({ behavior: 'smooth' }); }}
+              >
+                {l.label}
+              </Link>
             </li>
           ))}
-          <li>
-            <Link href="#billetterie" className="nav-cta" onClick={(e) => { e.preventDefault(); setOpen(false); document.getElementById('billetterie')?.scrollIntoView({ behavior: 'smooth' }); }}>
-              Prendre mes places
-            </Link>
-          </li>
         </ul>
       </div>
       {open && <div className="nav-backdrop" onClick={() => setOpen(false)} />}

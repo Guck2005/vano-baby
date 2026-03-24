@@ -68,7 +68,7 @@ export default function Guests() {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
   return (
-    <section className="guests-section">
+    <section className="guests-section" id="guests">
       <div className="guests-shell">
 
         <div className="guests-copy-card">
