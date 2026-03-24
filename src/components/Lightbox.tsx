@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { createPortal } from 'react-dom';
 
 type Props = {
   src: string;
@@ -10,6 +11,12 @@ type Props = {
 };
 
 export default function Lightbox({ src, alt, onClose }: Props) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', onKey);
@@ -20,7 +27,9 @@ export default function Lightbox({ src, alt, onClose }: Props) {
     };
   }, [onClose]);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div className="lightbox" onClick={onClose} role="dialog" aria-modal="true">
       <div className="lightbox-img" onClick={(e) => e.stopPropagation()}>
         <Image src={src} alt={alt} fill sizes="100vw" style={{ objectFit: 'contain' }} />
@@ -30,6 +39,7 @@ export default function Lightbox({ src, alt, onClose }: Props) {
           </svg>
         </button>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
