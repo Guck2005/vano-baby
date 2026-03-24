@@ -117,7 +117,7 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.1;
+  opacity: 0.01;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   filter: contrast(150%) brightness(100%);
@@ -1859,10 +1859,56 @@ nav {
   .nav-cta { display: none; }
   .nav-burger { display: flex; }
   .hero {
-    min-height: 75dvh;
+    min-height: 550px;
   }
   .hero-side-panel { display: none; }
-  .hero-card { display: none; }
+  .hero-card {
+    display: flex;
+    min-width: 108px;
+    max-width: 132px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    gap: 2px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(10, 10, 10, 0.38);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+    animation: none;
+  }
+  .hcard-label {
+    font-size: 0.42rem;
+    letter-spacing: 0.16em;
+  }
+  .hcard-value {
+    font-size: 0.78rem;
+    line-height: 1.05;
+  }
+  .hcard-accent {
+    width: 5px;
+    height: 5px;
+    top: 7px;
+    right: 8px;
+  }
+  .hero-card--1 {
+    top: 19%;
+    left: 3%;
+    transform: rotate(-4deg);
+  }
+  .hero-card--2 {
+    top: 20%;
+    right: 3%;
+    transform: rotate(4deg);
+  }
+  .hero-card--3 {
+    top: 54%;
+    left: 3%;
+    transform: rotate(-3deg);
+  }
+  .hero-card--5 {
+    top: 55%;
+    right: 3%;
+    transform: rotate(3deg);
+  }
 
   /* Contenu texte : centré, en haut */
   .hero-content {
@@ -2640,6 +2686,28 @@ nav {
 
 /* Mobile */
 @media (max-width: 520px) {
+  .hero-card {
+    min-width: 96px;
+    max-width: 110px;
+    padding: 7px 8px;
+    border-radius: 9px;
+  }
+  .hcard-label {
+    font-size: 0.38rem;
+    letter-spacing: 0.14em;
+  }
+  .hcard-value {
+    font-size: 0.7rem;
+  }
+  .hero-card--1,
+  .hero-card--2 {
+    top: 21%;
+  }
+  .hero-card--3,
+  .hero-card--5 {
+    top: 56%;
+  }
+
   .billet-section {
     padding: 24px 16px 60px;
   }
