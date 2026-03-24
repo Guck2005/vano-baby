@@ -15,11 +15,11 @@ export default function Home() {
       <Hero />
       <HypeStrip />
       <Guests />
+      <Acces />
+      <Billetterie />
       <div className="history-acces-bg">
         <History />
-        <Acces />
       </div>
-      <Billetterie />
       <FAQ />
       <OwlChatbot />
     </main>
