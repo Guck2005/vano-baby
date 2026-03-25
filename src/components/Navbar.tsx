@@ -1,8 +1,9 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { createPortal } from 'react-dom';
 
 const links = [
   { label: 'Guests',         href: '#guests'      },
@@ -14,6 +15,11 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
@@ -48,16 +54,22 @@ export default function Navbar() {
         </button>
       </nav>
 
-      <div className={`nav-drawer${open ? ' is-open' : ''}`}>
-        <ul>
-          {links.map((l) => (
-            <li key={l.href}>
-              <Link href={l.href} onClick={() => setOpen(false)}>{l.label}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      {open && <div className="nav-backdrop" onClick={() => setOpen(false)} />}
+      {mounted &&
+        createPortal(
+          <>
+            <div className={`nav-drawer${open ? ' is-open' : ''}`}>
+              <ul>
+                {links.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} onClick={() => setOpen(false)}>{l.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {open && <div className="nav-backdrop" onClick={() => setOpen(false)} />}
+          </>,
+          document.body
+        )}
     </>
   );
 }
