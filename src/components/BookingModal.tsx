@@ -11,11 +11,16 @@ interface TicketInfo {
   colorDark: string;
 }
 
-interface Props {
+interface CartItem {
   ticket: TicketInfo;
   qty: number;
+}
+
+interface Props {
+  items: CartItem[];
+  accentColor: string;
   onClose: () => void;
-  onSuccess: (id: string, qty: number) => void;
+  onSuccess: (orders: Array<{ id: string; qty: number }>) => void;
 }
 
 function fmt(n: number) {
@@ -24,7 +29,7 @@ function fmt(n: number) {
 
 type Step = 'form' | 'loading' | 'success';
 
-export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props) {
+export default function BookingModal({ items, accentColor, onClose, onSuccess }: Props) {
   const [step, setStep] = useState<Step>('form');
   const [mounted, setMounted] = useState(false);
   const [nom, setNom] = useState('');
@@ -33,7 +38,9 @@ export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props)
   const [operator, setOperator] = useState<'mtn' | 'moov' | ''>('');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const total = ticket.price * qty;
+  const total = items.reduce((sum, item) => sum + item.ticket.price * item.qty, 0);
+  const totalQty = items.reduce((sum, item) => sum + item.qty, 0);
+  const orderLabel = items.length === 1 ? items[0].ticket.label : `${items.length} categories`;
 
   useEffect(() => {
     setMounted(true);
@@ -77,7 +84,7 @@ export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props)
     >
       <div
         className="booking-modal"
-        style={{ '--billet-color': ticket.color, '--billet-dark': ticket.colorDark } as React.CSSProperties}
+        style={{ '--billet-color': accentColor, '--billet-dark': accentColor } as React.CSSProperties}
         onClick={(e) => e.stopPropagation()}
       >
         {step !== 'loading' && (
@@ -91,8 +98,8 @@ export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props)
 
             <div className="booking-recap">
               <div className="booking-recap-left">
-                <div className="booking-recap-cat">{ticket.label}</div>
-                <div className="booking-recap-qty">{qty} place{qty > 1 ? 's' : ''}</div>
+                <div className="booking-recap-cat">{orderLabel}</div>
+                <div className="booking-recap-qty">{totalQty} ticket{totalQty > 1 ? 's' : ''}</div>
               </div>
               <div className="booking-recap-total">
                 {fmt(total)} <span>FCFA</span>
@@ -175,7 +182,7 @@ export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props)
         {/* CHARGEMENT */}
         {step === 'loading' && (
           <div className="booking-loading">
-            <div className="booking-spinner" style={{ borderTopColor: ticket.color }} />
+            <div className="booking-spinner" style={{ borderTopColor: accentColor }} />
             <p className="booking-loading-text">Traitement en cours…</p>
           </div>
         )}
@@ -183,12 +190,20 @@ export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props)
         {/* SUCCÈS */}
         {step === 'success' && (
           <div className="booking-success">
-            <div className="booking-success-icon" style={{ background: ticket.color }}>✓</div>
-            <h3 className="booking-success-title">Place enregistrée !</h3>
+            <div className="booking-success-icon" style={{ background: accentColor }}>✓</div>
+            <h3 className="booking-success-title">Commande enregistrée !</h3>
             <p className="booking-success-msg">
-              Votre place a été bien enregistrée. Consultez votre mail pour recevoir votre ticket et votre QR code d&apos;entrée.
+              Votre commande a bien été prise en compte. Consultez votre mail pour recevoir vos tickets et vos QR codes d&apos;entrée.
             </p>
-            <button className="booking-submit" onClick={() => { onSuccess(ticket.id, qty); onClose(); }}>Fermer</button>
+            <button
+              className="booking-submit"
+              onClick={() => {
+                onSuccess(items.map((item) => ({ id: item.ticket.id, qty: item.qty })));
+                onClose();
+              }}
+            >
+              Fermer
+            </button>
           </div>
         )}
 

@@ -52,29 +52,37 @@ function fmt(n: number) {
 
 export default function Billetterie() {
   const [selected, setSelected] = useState<string>('standard');
-  const [qty, setQty] = useState<Record<string, number>>({ standard: 1, premium: 1, vip: 1, vvip: 1 });
+  const [qty, setQty] = useState<Record<string, number>>({ standard: 0, premium: 0, vip: 0, vvip: 0 });
   const [remaining, setRemaining] = useState<Record<string, number>>(
     Object.fromEntries(tickets.map((t) => [t.id, t.remaining]))
   );
-  const [booking, setBooking] = useState<{ ticket: typeof tickets[0]; qty: number } | null>(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const active = tickets.find((t) => t.id === selected)!;
-  const activeQty = qty[selected];
-  const total = active.price * activeQty;
+  const activeQty = qty[selected] ?? 0;
+  const cartItems = tickets
+    .map((ticket) => ({ ticket, qty: qty[ticket.id] ?? 0 }))
+    .filter((item) => item.qty > 0);
+  const cartQty = cartItems.reduce((sum, item) => sum + item.qty, 0);
+  const total = cartItems.reduce((sum, item) => sum + item.ticket.price * item.qty, 0);
+  const cartCategoryLabel = cartItems.length === 1 ? cartItems[0].ticket.label : `${cartItems.length} categories`;
 
   const setQtyFor = (id: string, delta: number) => {
     setQty((prev) => {
-      const next = Math.min(Math.max(1, (prev[id] ?? 1) + delta), remaining[id]);
+      const next = Math.min(Math.max(0, (prev[id] ?? 0) + delta), remaining[id]);
       return { ...prev, [id]: next };
     });
   };
 
-  const handleSuccess = (id: string, count: number) => {
-    setRemaining((prev) => ({ ...prev, [id]: Math.max(0, prev[id] - count) }));
-    setQty((prev) => ({
-      ...prev,
-      [id]: Math.min(prev[id], Math.max(1, remaining[id] - count)),
-    }));
+  const handleSuccess = (orders: Array<{ id: string; qty: number }>) => {
+    setRemaining((prev) => {
+      const next = { ...prev };
+      for (const order of orders) {
+        next[order.id] = Math.max(0, (next[order.id] ?? 0) - order.qty);
+      }
+      return next;
+    });
+    setQty({ standard: 0, premium: 0, vip: 0, vvip: 0 });
   };
 
   return (
@@ -100,8 +108,7 @@ export default function Billetterie() {
               const rem = remaining[t.id];
               const gaugeRatio = rem / t.total;
               const gaugeColor = gaugeRatio > 0.5 ? t.color : gaugeRatio > 0.2 ? '#e08c00' : '#ee0000';
-              const cardQty = qty[t.id];
-              const cardTotal = t.price * cardQty;
+              const cardQty = qty[t.id] ?? 0;
 
               return (
                 <div
@@ -138,8 +145,16 @@ export default function Billetterie() {
                     {/* CTA mobile — visible uniquement sur mobile */}
                     <div className="billet-card-footer" onClick={(e) => e.stopPropagation()}>
                       <div className="billet-card-footer-divider" />
-                      <button className="billet-card-cta" onClick={() => setBooking({ ticket: t, qty: cardQty })}>
-                        {cardQty === 1 ? 'Commander mon ticket' : `Commander mes ${cardQty} tickets`}
+                      <button
+                        className="billet-card-cta"
+                        onClick={() => setBookingOpen(true)}
+                        disabled={cartQty === 0}
+                      >
+                        {cartQty === 0
+                          ? 'Commander un ticket'
+                          : cartQty === 1
+                            ? 'Commander mon ticket'
+                            : `Commander mes ${cartQty} tickets`}
                       </button>
                     </div>
                   </div>
@@ -149,13 +164,13 @@ export default function Billetterie() {
                       {fmt(t.price)}<span className="billet-currency"> FCFA</span>
                     </div>
 
-                    <div className={`billet-qty${isActive ? ' is-visible' : ''}`} onClick={(e) => e.stopPropagation()}>
+                    <div className="billet-qty is-visible" onClick={(e) => e.stopPropagation()}>
                       <button
                         className="billet-qty-btn"
                         onClick={() => setQtyFor(t.id, -1)}
-                        disabled={qty[t.id] <= 1}
+                        disabled={(qty[t.id] ?? 0) <= 0}
                       >−</button>
-                      <span className="billet-qty-num">{qty[t.id]}</span>
+                      <span className="billet-qty-num">{cardQty}</span>
                       <button
                         className="billet-qty-btn"
                         onClick={() => setQtyFor(t.id, +1)}
@@ -179,17 +194,21 @@ export default function Billetterie() {
             <div className="billet-recap-label">Récapitulatif</div>
 
             <div className="billet-recap-row">
-              <span>Catégorie</span>
+              <span>Catégorie active</span>
               <strong>{active.label}</strong>
             </div>
             <div className="billet-recap-row">
-              <span>Prix unitaire</span>
+              <span>Prix catégorie active</span>
               <strong>{fmt(active.price)} FCFA</strong>
             </div>
             <div className="billet-recap-row">
-              <span>Quantité</span>
+              <span>Panier</span>
+              <strong>{cartQty > 0 ? `${cartCategoryLabel} · ${cartQty} ticket${cartQty > 1 ? 's' : ''}` : 'Vide'}</strong>
+            </div>
+            <div className="billet-recap-row">
+              <span>Quantité active</span>
               <div className="billet-qty is-visible" style={{ justifyContent: 'flex-end' }}>
-                <button className="billet-qty-btn" onClick={() => setQtyFor(selected, -1)} disabled={activeQty <= 1}>−</button>
+                <button className="billet-qty-btn" onClick={() => setQtyFor(selected, -1)} disabled={activeQty <= 0}>−</button>
                 <span className="billet-qty-num">{activeQty}</span>
                 <button className="billet-qty-btn" onClick={() => setQtyFor(selected, +1)} disabled={activeQty >= remaining[selected]}>+</button>
               </div>
@@ -204,9 +223,14 @@ export default function Billetterie() {
 
             <button
               className="billet-recap-cta"
-              onClick={() => setBooking({ ticket: active, qty: activeQty })}
+              onClick={() => setBookingOpen(true)}
+              disabled={cartQty === 0}
             >
-              {activeQty === 1 ? 'Commander mon ticket' : `Commander mes ${activeQty} tickets`}
+              {cartQty === 0
+                ? 'Commander un ticket'
+                : cartQty === 1
+                  ? 'Commander mon ticket'
+                  : `Commander mes ${cartQty} tickets`}
             </button>
 
             <p className="billet-recap-note">
@@ -216,11 +240,11 @@ export default function Billetterie() {
 
         </div>
       </div>
-      {booking && (
+      {bookingOpen && cartQty > 0 && (
         <BookingModal
-          ticket={booking.ticket}
-          qty={booking.qty}
-          onClose={() => setBooking(null)}
+          items={cartItems}
+          accentColor={active.color}
+          onClose={() => setBookingOpen(false)}
           onSuccess={handleSuccess}
         />
       )}
