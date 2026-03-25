@@ -87,7 +87,7 @@ export default function BookingModal({ ticket, qty, onClose, onSuccess }: Props)
         {/* FORMULAIRE */}
         {step === 'form' && (
           <>
-            <div className="booking-title">Réserver votre place</div>
+            <div className="booking-title">Commander votre ticket</div>
 
             <div className="booking-recap">
               <div className="booking-recap-left">

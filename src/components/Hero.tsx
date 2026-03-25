@@ -71,7 +71,7 @@ export default function Hero() {
             href="#billetterie"
             className="btn-main"
           >
-            Prendre mes places
+            Prendre mon ticket
             <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
               <path
                 d="M3 7.5H12M8.5 4L12 7.5L8.5 11"

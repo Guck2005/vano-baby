@@ -10,7 +10,7 @@ const links = [
   { label: 'Information',    href: '#acces'       },
   { label: 'Notre histoire', href: '#histoire'    },
   { label: 'FAQ',            href: '#faq'         },
-  { label: 'Ma place',       href: '#billetterie' },
+  { label: 'Mon ticket',     href: '#billetterie' },
 ];
 
 export default function Navbar() {
